@@ -12,7 +12,6 @@ class Database():
                 CREATE TABLE IF NOT EXISTS usuarios (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     nombre TEXT NOT NULL,
-                    apellido TEXT NOT NULL,
                     dni TEXT NOT NULL,
                     email TEXT NOT NULL,
                     telefono TEXT NOT NULL,
@@ -52,9 +51,10 @@ class Database():
     def agregarUsuario(self, nombre, email):
         with sqlite3.connect(self.db_name) as conexion:
             cursor = conexion.cursor()
-            cursor.execute("INSERT INTO usuarios (nombre, email) VALUES (?, ?)", (nombre, email))
+            cursor.execute("INSERT INTO usuarios (nombre, dni, email, telefono, direccion) VALUES (?, ?, ?, ?, ?)", (nombre, email))
             conexion.commit()
 
+                   
     def mostrarUsuarios(self):
         with sqlite3.connect(self.db_name) as conexion:
             cursor = conexion.cursor()

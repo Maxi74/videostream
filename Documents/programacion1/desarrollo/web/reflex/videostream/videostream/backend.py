@@ -5,7 +5,10 @@ db = Database()
 
 class State(rx.State):
     nombre: str
+    dni: int
     email: str
+    telefono: int
+    direccion: str
     usuario_id: int
     mensaje: str
 
@@ -18,3 +21,4 @@ class State(rx.State):
     def borrar_usuario(self):
         db.borrarUsuario(self.usuario_id)
     
+  
