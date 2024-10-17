@@ -1,6 +1,6 @@
 from .backend import *
 
-def borrar():
+def borrarusuario():
     usuarios = db.mostrarUsuarios()
     lista_usuarios = [
         rx.text(f"Nro. {usuario[0]}, Nombre: {usuario[1]}, Email: {usuario[2]}") for usuario in usuarios

@@ -1,9 +1,9 @@
 from .backend import *
 
-def cargarusuario():
+def altacontenido():
     page = rx.center(
         rx.vstack(
-            rx.heading('Página para cargar los datos de los usuarios'),
+            rx.heading('Página para cargar los datos de los contenidos'),
             rx.box(
                 rx.text('Nombre: '),
                 rx.input(

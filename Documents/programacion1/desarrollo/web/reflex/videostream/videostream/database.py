@@ -48,13 +48,19 @@ class Database():
 
 
 
-    def agregarUsuario(self, nombre, email):
+    def agregarUsuario(self, nombre, dni, email, telefono, direccion):
         with sqlite3.connect(self.db_name) as conexion:
             cursor = conexion.cursor()
-            cursor.execute("INSERT INTO usuarios (nombre, dni, email, telefono, direccion) VALUES (?, ?, ?, ?, ?)", (nombre, email))
+            cursor.execute("INSERT INTO usuarios (nombre, dni, email, telefono, direccion) VALUES (?, ?, ?, ?, ?)", (nombre, dni, email, telefono, direccion))
             conexion.commit()
 
-                   
+    def agregarContenido(self, titulo, genero, ano, director, protagonista, tipo_contenido):
+        with sqlite3.connect(self.db_name) as conexion:
+            cursor = conexion.cursor()
+            cursor.execute("INSERT INTO contenido (ntitulo, genero, ano, director, protagonista, tipo_contenido) VALUES (?, ?, ?, ?, ?)", (titulo, genero, ano, director, protagonista, tipo_contenido))
+            conexion.commit()
+
+
     def mostrarUsuarios(self):
         with sqlite3.connect(self.db_name) as conexion:
             cursor = conexion.cursor()
@@ -73,3 +79,9 @@ class Database():
             cursor = conexion.cursor()
             cursor.execute("DELETE FROM usuarios WHERE id=?", (usuario_id,))
             conexion.commit()
+
+    def borrarContenidos(self, contenido_id):
+            with sqlite3.connect(self.db_name) as conexion:
+                cursor = conexion.cursor()
+                cursor.execute("DELETE FROM contenido WHERE id=?", (contenido_id))
+                return cursor.fetchall()
